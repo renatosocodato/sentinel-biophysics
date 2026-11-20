@@ -19,7 +19,8 @@ The command runs the structural tests and regenerates two JSON files in
 `results/nc/`. The first example locates a Hopf crossing and checks its type
 using the first Lyapunov coefficient. The second estimates mean first-passage
 times in seeded, model-generated trajectories at different noise amplitudes,
-using a nominal 240-second cycle for the time conversion.
+mapping a linear reference period of about 67.34 model time units to a
+nominal 240 seconds. The escape-time fields ending in `_s` use that scale.
 The verifier compares four values with the reference values and absolute
 tolerances written in `verify_examples.py`.
 

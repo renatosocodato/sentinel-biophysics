@@ -2,7 +2,9 @@
 
 Escape is the first crossing of a fixed threshold. Simulations use fixed
 seeds and report censoring and bootstrap intervals for observed escape
-times. A nominal 240-second cycle converts model time to seconds.
+times. The example maps the linear period of the reference fast subsystem
+(about 67.34 model time units) to a nominal 240 seconds. Fields ending
+in _s use this illustrative scale.
 """
 from __future__ import annotations
 import json, os
@@ -52,7 +54,7 @@ def run_sigma(sigma, n_ens=300, seeds=(11, 23, 37)):
     times = np.array(times)
     if len(times) < 5:
         return dict(sigma=sigma, mfpt_tu=None, mfpt_s=None, censored_frac=ncens / (n_ens * len(seeds)),
-                    note="mostly censored (escape slower than Tmax) -> long-memory / stable focus")
+                    note="too few observed escapes before the simulation ended")
     # bootstrap CI over the pooled escape times
     rng = np.random.default_rng(101)
     boot = [np.mean(rng.choice(times, len(times), replace=True)) for _ in range(400)]

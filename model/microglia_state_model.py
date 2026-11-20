@@ -1,14 +1,7 @@
 """
 microglia_state_model.py — coupled slow-fast model of microglial state (companion paper).
 
-STATUS: UNCALIBRATED v0 (Milestone 0). This module SPECIFIES and INTEGRATES the model;
-it does NOT validate it. Parameter values are placeholders/priors sourced in
-PARAMETER_PROVENANCE.md (many flagged NEEDS-VERIFY / U=unconstrained). The central
-hypotheses are to be TESTED in later milestones, not assumed here:
-  H1: the coupled system supports surveillance(limit cycle)/reactive(fixed pt)/
-      dystrophic(collapse)/quiescent(node) as coexisting attractors  -> NOT YET TESTED
-  H2: periodic opto-RhoA forcing entrains the surveillance oscillator -> NOT YET TESTED
-A negative result for H1/H2 is an acceptable, reportable outcome.
+This module defines and integrates the reference equations using example parameters.
 
 State vector x = (G, w, c, B, E, L):
   G  = Gamma, contractile balance (fast activator; opto-RhoA acts here)   [dimensionless, FHN-scaled]
@@ -18,29 +11,23 @@ State vector x = (G, w, c, B, E, L):
   E  = energy charge epsilon_E (gate; 0..1)                               [normalized ATP availability]
   L  = process length (mechanical, slow)                                  [um]
 
-Conceptual mapping to the review (frozen at Stage 2): G<->Box4 Gamma & Box7 activator u;
-w<->Box7 inhibitor v; c<->Box6 tubulin-code hysteresis; B<->Box8 brake; E<->Box3/7.13 energy;
-L<->Box4 L_max / 6.1.2 internalization threshold. opto-RhoA = drive I(t) (Box 10).
-
 Requires: numpy, scipy.
 """
 from __future__ import annotations
 import numpy as np
 
 try:
-    from .params import P  # parameter dict with provenance tags
+    from .params import P
 except Exception:  # allow running as a script without package context
     from params import P
 
 
 # ----------------------------------------------------------------------------
-# Forcing: opto-RhoA actuator I(t). This is the falsifiability hook (Box 10).
+# Forcing: opto-RhoA actuator I(t). 
 # ----------------------------------------------------------------------------
 def opto_drive(t, amplitude=0.0, period=None, duty=0.5, t_on=0.0, t_off=np.inf):
     """opto-ArhGEF25 drive into the fast (Gamma) equation.
     amplitude=0 -> dark (no stimulation). period=None -> constant clamp while on.
-    For the ENTRAINMENT test (H2, later milestone): sweep `period` across the
-    intrinsic surveillance band and measure phase-locking. Here it is only a hook.
     """
     if amplitude == 0.0 or t < t_on or t > t_off:
         return 0.0
