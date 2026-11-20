@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Environments
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Build artifacts not part of the committed reproducibility record
+build/
+dist/
+
+# Never commit raw/unshareable data — Tier-2 inputs are pointer + sha256 only, never the bytes
+data/raw/
+*.feather
+
+# Local scratch (never intended for the repo)
+scratch/
+*.tmp
+
+# Generated model examples
+/results/

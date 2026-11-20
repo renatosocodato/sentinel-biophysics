@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Please cite this version if you use the software."
+title: "SENTINEL: computational biophysics of microglial surveillance"
+type: software
+version: 0.1.0
+date-released: 2026-11-20
+authors:
+  - family-names: Socodato
+    given-names: Renato
+    orcid: "https://orcid.org/0000-0002-6882-5020"
+  - family-names: Relvas
+    given-names: João B.
+    orcid: "https://orcid.org/0000-0001-7636-0924"
+license: MIT
+repository-code: "https://github.com/renatosocodato/sentinel-biophysics"
+url: "https://github.com/renatosocodato/sentinel-biophysics/releases/tag/v0.1.0"
+keywords: [microglia, dynamical systems, computational biophysics, reproducibility]
