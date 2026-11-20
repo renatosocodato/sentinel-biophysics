@@ -23,7 +23,7 @@ except Exception:  # allow running as a script without package context
 
 
 # ----------------------------------------------------------------------------
-# Forcing: opto-RhoA actuator I(t). 
+# Forcing: opto-RhoA actuator I(t).
 # ----------------------------------------------------------------------------
 def opto_drive(t, amplitude=0.0, period=None, duty=0.5, t_on=0.0, t_off=np.inf):
     """opto-ArhGEF25 drive into the fast (Gamma) equation.
